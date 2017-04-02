@@ -1,0 +1,2 @@
+"user_test" "md5f572704c72d613f3958ff5a30ea21dcc"
+"manager" "md5fafccb29ba54a4352929a02bf4626203"
