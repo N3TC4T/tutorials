@@ -39,7 +39,9 @@ do
           FROM ${REPMGR_SCHEMA}.repl_nodes \
           WHERE active = TRUE AND type='master'" >> $PGBOUNCER_DATABASE_INI_NEW
 
-    rsync $PGBOUNCER_DATABASE_INI_NEW $HOST:$PGBOUNCER_DATABASE_INI --inplace || true
+    rsync $PGBOUNCER_DATABASE_INI_NEW $HOST:$PGBOUNCER_DATABASE_INI --inplace || EXIT_CODE=$? && true
+    
+    echo $EXIT_CODE
 
     psql -tc "reload" -h $HOST -p $PGBOUNCER_PORT -U manager pgbouncer
     psql -tc "resume" -h $HOST -p $PGBOUNCER_PORT -U manager pgbouncer
